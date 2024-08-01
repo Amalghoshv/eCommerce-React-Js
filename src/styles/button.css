@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    font-family: "Josefin Sans", sans-serif;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 2px;
+  }
+  
+  /* Example of additional styles */
+  .btn-primary {
+    background-color: #a31d1d;
+    color: white;
+    
+  }
+  .btn-primary:hover{
+    background-color:white ;
+    color: #a31d1d;
+    border:2px solid #a31d1d;
+    font-weight: bold;
+
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+   
+  }
+  .btn-login {
+    background-color:white; 
+    float: right;
+   
+  }
+  .btn-flip{
+    background-color: rgba(107, 18, 18, 0.575);
+    font-size: smaller;
+    
+  }
