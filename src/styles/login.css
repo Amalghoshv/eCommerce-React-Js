@@ -6,17 +6,18 @@ body {
 
 
 label {
-    
-    float:left;
-    margin-right:15px;
+  display: block;
+  margin-right: 15px;
   font-size: 25px;
-  
+  width: 150px; /* Set a fixed width for labels */
 }
 input{
+  display: block;
     background-color: transparent;
     border: 0;
     border-bottom: 3px solid rgba(163, 29, 29, 1) ;
     border-radius: 10px;
+    flex: 1;
     
 }
 

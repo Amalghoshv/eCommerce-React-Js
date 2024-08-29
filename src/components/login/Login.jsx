@@ -7,8 +7,9 @@ import "../../styles/login.css";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  // const registerEmailRef = useRef();
-  // const registerPasswordRef = useRef();
+  const registerEmailRef = useRef();   // For registration
+  const registerPasswordRef = useRef();
+  
   const [isFlipped, setIsFlipped] = useState(false);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -18,8 +19,16 @@ export default function Login() {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    const email = registerEmailRef.current.value;
+    const password = registerPasswordRef.current.value;
+    console.log("Email:", email); // Check if the email is correctly captured
+    console.log("Password:", password); // Check if the password is captured
+
+    if (!email || !password) {
+      alert("Email and password are required.");
+      return;
+    }
+
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -28,9 +37,9 @@ export default function Login() {
         password
       );
       console.log("User registered:", userCredential.user);
-      alert("user registered")
       // Optionally, save the user's name to the user profile or database here
-
+      alert("user registered");
+    navigate("/login");
       // Navigate to the products page after successful registration
       navigate("/login");
     } catch (error) {
@@ -98,19 +107,15 @@ export default function Login() {
 
         <div className="login form-container register">
           <h1>Register</h1>
-          <form className=" login form" onSubmit={handleRegister}>
-            {/* <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input type="text" name="name" id="name" />
-          </div> */}
+          <form className=" login form" onSubmit={handleRegister}> 
             <div className="form-group">
               <label htmlFor="">Email:</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email"  ref={registerEmailRef}/>
             </div>
-
+   
             <div className="form-group">
               <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password" />
+              <input type="password" name="password" id="password" ref={registerPasswordRef} />
             </div>
             <div className="btns">
               <Button

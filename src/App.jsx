@@ -39,7 +39,6 @@ const auth = getAuth(app);
 // const analytics = getAnalytics(app);
   return (
     <BrowserRouter>
-    {/* <Header /> */}
       <Routes>
         <Route path="/products" element={<ProductList />} />
         <Route path ="/login" element={<Login/>}/>
