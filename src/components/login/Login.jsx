@@ -48,7 +48,7 @@ export default function Login() {
   };
 
   const handleLogin = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 

@@ -9,9 +9,10 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import Product from "./components/product/Product";
 import Cart from "./components/cart/Cart";
-
-
+import Header from "./components/ui/Header";
+import { useState } from "react";
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
 
 const firebaseConfig = {
 
@@ -39,8 +40,10 @@ const auth = getAuth(app);
 // const analytics = getAnalytics(app);
   return (
     <BrowserRouter>
+      {window.location.pathname !== '/login' && <Header setSearchQuery={setSearchQuery}/>} 
       <Routes>
-        <Route path="/products" element={<ProductList />} />
+        <Route path="/" element={<ProductList searchQuery={searchQuery} />} />
+        <Route path="/products" element={<ProductList searchQuery={searchQuery} />} />
         <Route path ="/login" element={<Login/>}/>
         <Route path ="/product" element={<Product/>}/>
         <Route path="/cart" element={<Cart/>}/>
