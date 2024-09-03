@@ -72,11 +72,16 @@ export default function ProductList({ searchQuery }) {
       <div className="product-list">
         {filteredProducts.map((product) => (
           <div key={product.id} className="product-card">
+            <div  className="product-image-div">
             <img
               src={product.image}
               alt={product.title}
-              className="product-image"
+               className="product-image"
+             
             />
+
+            </div>
+           
             <div className="product-details">
               <h3>{product.title}</h3>
               <p>${product.price}</p>

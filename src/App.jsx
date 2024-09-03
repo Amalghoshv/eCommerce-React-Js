@@ -1,7 +1,7 @@
 
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route ,useLocation } from "react-router-dom";
 import ProductList from "./components/product/ProductList";
 import Login from "./components/login/Login";
 import { initializeApp } from "firebase/app";
@@ -13,6 +13,7 @@ import Header from "./components/ui/Header";
 import { useState } from "react";
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
+  const location = useLocation();
 
 const firebaseConfig = {
 
@@ -36,20 +37,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-// const analytics = getAnalytics(app);
   return (
-    <BrowserRouter>
-      {window.location.pathname !== '/login' && <Header setSearchQuery={setSearchQuery}/>} 
+    <>
+      {location.pathname !== '/login' && <Header setSearchQuery={setSearchQuery}/>} 
       <Routes>
         <Route path="/" element={<ProductList searchQuery={searchQuery} />} />
         <Route path="/products" element={<ProductList searchQuery={searchQuery} />} />
         <Route path ="/login" element={<Login/>}/>
         <Route path ="/product" element={<Product/>}/>
         <Route path="/cart" element={<Cart/>}/>
+   
       </Routes>
+    </>
+  );
+}
+export default function AppWrapper() {
+  return (
+    <BrowserRouter>
+      <App />
     </BrowserRouter>
   );
 }
-
-export default App;
+// export default App;

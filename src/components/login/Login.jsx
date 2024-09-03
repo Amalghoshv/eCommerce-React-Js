@@ -1,15 +1,15 @@
 import Button from "../ui/Button";
 import { useState, useRef } from "react";
-import { signInWithEmailAndPassword, getAuth,createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth,createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../../styles/login.css";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const registerEmailRef = useRef();   // For registration
+  const registerEmailRef = useRef(); 
   const registerPasswordRef = useRef();
-  
+  const registerNameRef =useRef();
   const [isFlipped, setIsFlipped] = useState(false);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -21,14 +21,16 @@ export default function Login() {
     event.preventDefault();
     const email = registerEmailRef.current.value;
     const password = registerPasswordRef.current.value;
-    console.log("Email:", email); // Check if the email is correctly captured
-    console.log("Password:", password); // Check if the password is captured
+    const name = registerNameRef.current.value;
 
-    if (!email || !password) {
-      alert("Email and password are required.");
+    if (!email || !password || !name) {
+      Swal.fire({
+        title:"All fields required!",
+        icon:"warning"
+
+      })
       return;
     }
-
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -36,15 +38,25 @@ export default function Login() {
         email,
         password
       );
-      console.log("User registered:", userCredential.user);
-      // Optionally, save the user's name to the user profile or database here
-      alert("user registered");
+      const user = userCredential.user;
+      Swal.fire({
+        title:"User Registered Successfully",
+        text: userCredential.user,
+        icon:"success"
+      })
+      await updateProfile(user, {
+        displayName: name
+      });
+      
     navigate("/login");
-      // Navigate to the products page after successful registration
+     
       navigate("/login");
     } catch (error) {
-      console.error("Registration error:", error.message);
-    }
+      Swal.fire({
+        title: "Registration failed!",
+        text: error.message,
+        icon: "error"
+      });    }
   };
 
   const handleLogin = async (event) => {
@@ -53,14 +65,13 @@ export default function Login() {
     const password = passwordRef.current.value;
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      // User successfully logged in, handle redirection or state updates
-      console.log("User logged in:", userCredential.user);
-      // Navigate to the products page after successful login
+      // console.log("User logged in:", userCredential.user);
+      
       navigate("/products");
 
       // Optionally redirect to a protected route or set a logged-in state
@@ -107,7 +118,11 @@ export default function Login() {
 
         <div className="login form-container register">
           <h1>Register</h1>
-          <form className=" login form" onSubmit={handleRegister}> 
+          <form className=" login form" onSubmit={handleRegister}>
+          <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input type="text" name="name" id="name" ref={registerNameRef} />
+            </div> 
             <div className="form-group">
               <label htmlFor="">Email:</label>
               <input type="email" name="email" id="email"  ref={registerEmailRef}/>

@@ -31,26 +31,46 @@
     
     
 }
+.profile-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .dropdown {
     position: absolute;
     background-color: white;
     border: 1px solid #ccc;
     padding: 10px;
-    width: 250px;
+    width: 350px;
     z-index: 1000;
     margin-top: 5px;
-    margin: 0;
+    margin-left: -10%;
     border-radius: 20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  .profile-dropdown{
+    width:200px;
+  }
+  .cart-dropdown{
+    margin-left: -12%;
+
   }
   .dropdown p {
     margin: 0;
     padding: 5px 10px;
     cursor: pointer;
   }
-  
+
   .dropdown p:hover {
     background-color: #f0f0f0;
+  }
+  .buynow{
+    padding: 10px 30px;
+    background-color:#a31d1d ;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 20px;
+    border:0
   }
   /* .dropdown {
     position: absolute;
@@ -74,6 +94,31 @@
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
+    background-color: #ebebeb;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .cart-image{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 20%;
+    
+
+  }
+  .checkout-btn{
+    padding: 20px 30px;
+    background-color: rgb(21, 139, 37);
+    color: #fff;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 20px;
+    border:0
+  }
+  .cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .wishlist-image {
@@ -87,6 +132,10 @@
     flex-direction: column;
     justify-content: center;
     
+  }
+  .total-amount{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
   }
   
   .wishlist-details p {

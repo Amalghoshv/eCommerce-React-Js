@@ -3,13 +3,11 @@ body {
   font-family: "Jost", sans-serif;
 
 }
-
-
 label {
   display: block;
   margin-right: 15px;
   font-size: 25px;
-  width: 150px; /* Set a fixed width for labels */
+  width: 150px; 
 }
 input{
   display: block;
@@ -21,12 +19,11 @@ input{
     
 }
 
-
 .login {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    height: 100vh;           /* Full viewport height */
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;           
     
   }
   ::placeholder{
@@ -36,7 +33,8 @@ input{
   input:focus{
     font-family:"Jost", sans-serif; ;
     font-weight: bold;
-    border: none;
+    outline: none;
+    
 
   }
   h1{
@@ -71,8 +69,6 @@ input{
     border: 2px solid rgb(236, 232, 232) ;
     background-color: brown;
     color: aliceblue;
-    
-
 }
 
 .container {
